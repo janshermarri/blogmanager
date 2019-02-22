@@ -1,0 +1,38 @@
+<h1>Editing Post: {{ post.post_title }}</h1>
+
+<form action="{% url 'blogmanagement:edit_post' post.id %}" method="post">
+        {% csrf_token %}
+    <label>Title</label>
+    <input type="text" name="title" value="{{ post.post_title }}">
+    <br>
+    <textarea type="text" name="body" cols="175" rows="20">{{ post.post_body }}
+    </textarea>
+    <br>
+    <label>Keywords</label>
+    <input type="text" name="keywords" value="{{ post.keywords }}">
+    <br>
+    <label>Author</label>
+    <br>
+    <select name="author">
+        {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label>Categories</label>
+    <br>
+    <select name="category">
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label>Status</label>
+    <br>
+    <select name="status">
+        {% for status in status %}
+            <option value="{{ status.id }}">{{ status.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit">
+</form>

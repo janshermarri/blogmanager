@@ -1,0 +1,40 @@
+<h1>New Status</h1>
+
+<form action="{% url 'blogmanagement:new_post_view' %}" method="post">
+    {% csrf_token %}
+    <label>Title</label>
+    <input type="text" name="title">
+    <br>
+    <label>Body</label>
+    <br>
+    <textarea type="text" name="body" cols="100" rows="7">
+    </textarea>
+    <br>
+    <label>Keywords</label>
+    <input type="text" name="keywords">
+    <br>
+    <label>Author</label>
+    <br>
+    <select name="author">
+        {% for author in authors %}
+            <option value="{{ author.id }}">{{ author.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label>Categories</label>
+    <br>
+    <select name="category">
+        {% for category in categories %}
+            <option value="{{ category.id }}">{{ category.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <label>Status</label>
+    <br>
+    <select name="status">
+        {% for status in status %}
+            <option value="{{ status.id }}">{{ status.name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit">
+</form>

@@ -1,0 +1,98 @@
+{% extends 'blogmanagement/layouts/post_detail_layout.html' %}
+
+{% load static %}
+{% block title %}
+    {{ post.post_title }}
+{% endblock %}
+
+{% block page_heading %}
+    Roku's Blog
+{% endblock %}
+
+{% block post_info %}
+    <h1 class="mb-4">{{ post.post_title }}</h1>
+    <div class="post-meta">
+        <span class="author mr-2"><a href="{% url 'blogmanagement:posts_by_author' post.author.slug %}"> {{ post.author.name }}</a></span> •
+        <span class="ml-2"><a href="{% url 'blogmanagement:posts_by_category' post.category.slug %}"> {{ post.category.name }}</a></span>
+    </div>
+    <a class="category mb-5" href="#">Food</a> <a class="category mb-5" href="#">Travel</a>
+
+{% endblock %}
+
+{% block categories %}
+    {% for category in categories|slice:"5" %}
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'blogmanagement:posts_by_category' category.slug %}">{{ category.name }}</a>
+        </li>
+    {% endfor %}
+{% endblock %}
+
+{% block post_body %}
+    {{ post.post_body }}
+{% endblock %}
+
+{% block post_category_name %}
+    <a href="{% url 'blogmanagement:posts_by_category' post.category.slug %}">{{ post.category.name }}</a>
+{% endblock %}
+
+{% block comments %}
+    <h1>Comments ({{ comments_count }})</h1>
+    {% for comment in comments %}
+    <li class="comment">
+        <div class="comment-body">
+            <h3>{{ comment.name }}</h3>
+            <div class="meta">{{ comment.date|date:"M d Y" }}</div>
+            <p>{{ comment.comment }}</p>
+        </div>
+    </li>
+    {% endfor %}
+{% endblock %}
+
+{% block tags %}
+
+{% endblock %}
+
+{% block new_comment %}
+            <div class="comment-form-wrap pt-5">
+            <h3 class="mb-5">Leave a comment</h3>
+            <form action="{% url 'blogmanagement:save_comment' %}" method="post" class="p-5 bg-light">
+                {% csrf_token %}
+                <input type="text" name="post_id" hidden value="{{ post.id }}">
+                <div class="form-group">
+                    <label for="name">Name *</label>
+                    <input type="text" hidden name="path" value="{{ request.path }}">
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea name="comment" id="message" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Post Comment" class="btn btn-primary">
+                </div>
+
+            </form>
+        </div>
+{% endblock %}
+
+{% block featured_posts %}
+    {% for post in featured_posts %}
+        <li>
+            <a href="{% url 'blogmanagement:post_detail' post.slug %}">
+                <img src="{% static 'blogmanagement/images/img_12.jpg' %}" alt="Image placeholder" class="mr-4">
+                <div class="text">
+                    <h4>{{ post.post_title }}</h4>
+                    <div class="post-meta">
+                        <span class="mr-2">{{ post.date_created|date:"M d Y" }}</span>
+                    </div>
+                </div>
+            </a>
+        </li>
+    {% endfor %}
+{% endblock %}
+
+{% block categories_down %}
+    {% for category in categories %}
+                  <li><a href="{% url 'blogmanagement:posts_by_category' category.slug %}">{{ category.name }} <span>(14)</span></a></li>
+    {% endfor %}
+{% endblock %}

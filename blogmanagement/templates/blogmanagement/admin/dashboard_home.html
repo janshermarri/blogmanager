@@ -1,0 +1,69 @@
+{% extends 'blogmanagement/layouts/dashboard/dashboard_header.html' %}
+{% load static %}
+{% block main_content %}
+                        <div class="row m-t-25">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-account-o"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>{{ author_count }}</h2>
+                                                <span>authors on blog</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-check"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>{{ published_posts_count }}</h2>
+                                                <span>published posts</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c3">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-calendar-note"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>{{ pending_posts_count }}</h2>
+                                                <span>pending posts</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c3">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-comment"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2>{{ comments_count }}</h2>
+                                                <span>comments last week</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+{% endblock %}
+{% block scripts %}
+    {% include 'blogmanagement/layouts/dashboard/dashboard_footer.html' %}
+{% endblock %}

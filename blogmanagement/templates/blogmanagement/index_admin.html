@@ -1,0 +1,14 @@
+<a href="{% url 'blogmanagement:categories' %}">Categories</a>
+<a href="{% url 'blogmanagement:authors' %}">Authors</a>
+<a href="{% url 'blogmanagement:status' %}">Status</a>
+<a href="{% url 'blogmanagement:posts' %}">Posts</a>
+<br><br>
+<button id="logout_btn">Logout</button>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#logout_btn").click(function () {
+            window.location.replace("/logout")
+        })
+    })
+</script>

@@ -1,0 +1,83 @@
+{% extends 'blogmanagement/layouts/dashboard/dashboard_header.html' %}
+{% load static %}
+{% block main_content %}
+    <div class="row">
+                            <div class="col-md-12">
+                                <!-- DATA TABLE -->
+                                <h3 class="title-5 m-b-35">Authors</h3>
+                                <div class="table-data__tool">
+                                    <div class="table-data__tool-right">
+                                        <a href="{% url 'blogmanagement:new_author_view' %}">
+                                        <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                                            <i class="zmdi zmdi-plus"></i>add author</button>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="table-responsive table-responsive-data2">
+                                    <table class="table table-data2">
+                                        <thead>
+                                            <tr>
+                                                <th>name</th>
+                                                <th>contact</th>
+                                                <th>date joined</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for author in authors %}
+                                            <tr class="tr-shadow">
+                                                <td>
+                                                    <a href="{% url 'blogmanagement:posts_by_author' author.slug %}">{{ author.user.first_name }} {{ author.user.last_name }}</a>
+                                                </td>
+                                                <td>{{ author.contact }}</td>
+                                                <td>{{ author.date_joined|date:"M d Y" }}</td>
+                                                <td>
+                                                    <div class="table-data-feature">
+                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Send">
+                                                            <i class="zmdi zmdi-mail-send"></i>
+                                                        </button>
+                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                        </button>
+                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="Delete">
+                                                            <i class="zmdi zmdi-delete"></i>
+                                                        </button>
+                                                        <button class="item" data-toggle="tooltip" data-placement="top" title="" data-original-title="More">
+                                                            <i class="zmdi zmdi-more"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="spacer"></tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- END DATA TABLE -->
+                            <div class="row">
+                            <div class="col-md-5"></div>
+                            <div class="col-md-4">
+                                <span class="step-links">
+                                    {% if posts.has_previous %}
+                                        <a href="?page=1">&laquo; first</a>
+                                        <a href="?page={{ posts.previous_page_number }}"><</a>
+                                    {% endif %}
+                                    <span class="current">
+                                        Page {{ posts.number }} of {{ posts.paginator.num_pages }}
+                                    </span>
+
+                                    {% if posts.has_next %}
+                                        <a href="?page={{ posts.next_page_number }}"> > </a>
+                                        <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+                                    {% endif %}
+                                </span>
+                            </div>
+                            </div>
+                            </div>
+
+
+                        </div>
+{% endblock %}
+{% block scripts %}
+    {% include 'blogmanagement/layouts/dashboard/dashboard_footer.html' %}
+{% endblock %}

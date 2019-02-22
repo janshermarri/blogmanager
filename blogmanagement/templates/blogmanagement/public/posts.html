@@ -1,0 +1,60 @@
+{% extends 'blogmanagement/layouts/master_layout.html' %}
+{% load static %}
+{% block page_title %}Roku's Blog{% endblock %}
+{% block posts %}
+    {% for post in posts %}
+                <div class="col-md-6">
+                  <a href="{% url 'blogmanagement:post_detail' post.slug %}" class="blog-entry element-animate fadeIn element-animated" data-animate-effect="fadeIn">
+                      <img src="{% static 'blogmanagement/images/img_5.jpg' %}" alt="Image placeholder"></a>
+                    <div class="blog-content-body">
+                      <div class="post-meta">
+                        <span class="author mr-2"><a href="{% url 'blogmanagement:posts_by_author' post.author.slug %}">{{ post.author.name }}</a></span>
+                        <span class="mr-2">{{ post.date_created|date:"M d Y" }}</span>•<span class="ml-2"><a href="{% url 'blogmanagement:posts_by_category' post.category.slug %}">{{ post.category.name }}</a></span>•
+                          <span class="ml-2"><span class="fa fa-comments"></span> {{ post.comment_set.count }}</span>
+                      </div>
+                        <a href="{% url 'blogmanagement:post_detail' post.slug %}" class="blog-entry element-animate fadeIn element-animated" data-animate-effect="fadeIn"><h2>{{ post.post_title }}</h2></a>
+                    </div>
+                </div>
+    {% endfor %}
+        <span class="step-links">
+        {% if posts.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ posts.previous_page_number }}"><</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        </span>
+
+        {% if posts.has_next %}
+            <a href="?page={{ posts.next_page_number }}"> > </a>
+            <a href="?page={{ posts.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+
+{% endblock %}
+
+{% block featured_posts %}
+    {% for post in featured_posts %}
+    <li>
+        <a href="{% url 'blogmanagement:post_detail' post.slug %}">
+            <img src="{% static 'blogmanagement/images/img_12.jpg' %}" alt="Image placeholder" class="mr-4">
+            <div class="text">
+                <h4>{{ post.post_title }}</h4>
+                <div class="post-meta">
+                    <span class="mr-2">{{ post.date_created|date:"M d Y" }}</span>
+                </div>
+            </div>
+        </a>
+    </li>
+    {% endfor %}
+{% endblock %}
+
+{% block categories_down %}
+    {% for category in categories %}
+                  <li><a href="{% url 'blogmanagement:posts_by_category' category.slug %}">{{ category.name }} <span>(14)</span></a></li>
+    {% endfor %}
+{% endblock %}
+
+
+

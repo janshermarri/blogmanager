@@ -1,0 +1,16 @@
+<h1>Login page</h1>
+
+{% if error %}
+    <h3>{{ error }}.</h3>
+{% endif %}
+
+<form action="{% url 'blogmanagement:login' %}" method="post">
+    {% csrf_token %}
+    <label>Username</label>
+    <input type="text" name="username">
+    <br>
+    <label>Password</label>
+    <input type="password" name="password">
+    <br><br>
+    <input type="submit" value="Login">
+</form>

@@ -1,0 +1,16 @@
+<h1>Deleting status {{ status.name }}</h1>
+
+<form action="{% url 'blogmanagement:delete_status' status.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Confirm">
+</form>
+    <button id="status_btn">Cancel and go back to status</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#status_btn").click(function () {
+            window.location.replace("/status")
+        })
+    })
+</script>

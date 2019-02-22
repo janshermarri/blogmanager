@@ -1,0 +1,17 @@
+<h1>Posts by Status: {{ status_name }}</h1>
+
+{% if posts %}
+    <h2>Total posts: {{ posts.count }}</h2>
+    <br>
+
+{% for post in posts %}
+
+    <h3><a href="{% url 'blogmanagement:post_detail' post.id %}">{{ post.post_title }}</a></h3>
+    <h5><a href="{% url 'blogmanagement:posts_by_category' post.category.slug %}">{{ post.category.name }} </a>  - {{ post.date_created }}</h5>
+
+{% endfor %}
+
+{% else %}
+    <h3>No posts found with this status.</h3>
+{% endif %}
+

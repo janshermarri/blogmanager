@@ -1,0 +1,16 @@
+<h1>Deleting Author {{ author.name }}</h1>
+
+<form action="{% url 'blogmanagement:delete_author' author.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Confirm">
+</form>
+    <button id="categories_btn">Cancel and go back to authors</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#categories_btn").click(function () {
+            window.location.replace("/manage/authors")
+        })
+    })
+</script>

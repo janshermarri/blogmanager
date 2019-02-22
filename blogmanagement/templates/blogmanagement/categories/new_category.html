@@ -1,0 +1,12 @@
+<h1>New Category</h1>
+
+{% if error %}
+    <h3>ERROR: {{ error }}.</h3>
+{% endif %}
+
+<form action="{% url 'blogmanagement:new_category_view' %}" method="post">
+    {% csrf_token %}
+    <label for="category_name">Name</label>
+    <input type="text" id="category_name" name="name">
+    <input type="submit">
+</form>

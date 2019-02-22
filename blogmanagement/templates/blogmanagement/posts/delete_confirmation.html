@@ -1,0 +1,16 @@
+<h1>Deleting Post: {{ post.post_title }}</h1>
+
+<form action="{% url 'blogmanagement:delete_post' post.id %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Confirm">
+</form>
+    <button id="status_btn">Cancel and go back to posts</button>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#status_btn").click(function () {
+            window.location.replace("/manage/posts")
+        })
+    })
+</script>

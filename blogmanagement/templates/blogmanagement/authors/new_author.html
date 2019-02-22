@@ -1,0 +1,75 @@
+{% extends 'blogmanagement/layouts/dashboard/dashboard_header.html' %}
+{% load static %}
+{% block main_content %}
+    <div class="row">
+    <div class="col-lg-3"></div>
+    <div class="col-lg-6">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <strong>Normal</strong> Form
+                                    </div>
+                                    <div class="card-body card-block">
+                                        <form action="{% url 'blogmanagement:new_author_view' %}" method="post" class="">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="nf-email" class=" form-control-label">Username</label>
+                                                <input type="text" id="nf-email" name="username" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nf-email" class=" form-control-label">First Name</label>
+                                                <input type="text" id="nf-email" name="first_name" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nf-email" class=" form-control-label">Last Name</label>
+                                                <input type="text" id="nf-email" name="last_name" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nf-email" class=" form-control-label">Email</label>
+                                                <input type="email" id="nf-email" name="email" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nf-email" class=" form-control-label">Contact</label>
+                                                <input type="text" id="nf-email" name="contact" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nf-password" class=" form-control-label">Password</label>
+                                                <input type="password" id="nf-password" name="password" class="form-control" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="nf-password" class=" form-control-label">Confirm Password</label>
+                                                <input type="password" id="nf-password" name="confirm_password" class="form-control" required>
+                                            </div>
+                                            <div class="card-footer">
+                                                <button type="submit" class="btn btn-primary btn-sm">
+                                                    <i class="fa fa-dot-circle-o"></i> Submit
+                                                </button>
+                                                <button type="reset" class="btn btn-danger btn-sm">
+                                                    <i class="fa fa-ban"></i> Reset
+                                                </button>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+    <div class="col-lg-3"></div>
+    </div>
+{% endblock %}
+{% block scripts %}
+    {% include 'blogmanagement/layouts/dashboard/dashboard_footer.html' %}
+{% endblock %}
+
+<h1>New Category</h1>
+
+{% if error %}
+    <h3>ERROR: {{ error }}.</h3>
+{% endif %}
+
+<form action="{% url 'blogmanagement:new_author_view' %}" method="post">
+    {% csrf_token %}
+    <label for="category_name">Name</label>
+    <input type="text" id="category_name" name="name">
+    <label for="author_contact">Contact</label>
+    <input type="text" id="author_contact" name="contact">
+    <input type="submit">
+</form>

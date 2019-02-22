@@ -1,0 +1,82 @@
+{% load static %}
+<head>
+    <title>{% block page_title %}{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:300, 400,700|Inconsolata:400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'blogmanagement/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'blogmanagement/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'blogmanagement/css/owl.carousel.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'blogmanagement/fonts/ionicons/css/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blogmanagement/fonts/fontawesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blogmanagement/fonts/flaticon/font/flaticon.css' %}">
+
+    <!-- Theme Style -->
+    <link rel="stylesheet" href="{% static 'blogmanagement/css/style.css' %}">
+  </head>
+
+  <body>
+
+
+    <div class="wrap">
+
+      <header role="banner">
+        <div class="top-bar">
+          <div class="container">
+            <div class="row">
+              <div class="col-11 social">
+                <a href="#"><span class="fa fa-twitter"></span></a>
+                <a href="#"><span class="fa fa-facebook"></span></a>
+                <a href="#"><span class="fa fa-instagram"></span></a>
+                <a href="#"><span class="fa fa-youtube-play"></span></a>
+              </div>
+              <div class="col-1 search-top">
+                <!-- <a href="#"><span class="fa fa-search"></span></a> -->
+                  {% if not request.user.is_authenticated %}
+                      <a href="{% url 'blogmanagement:login' %}"><h5>Login</h5></a>
+                    {% else %}
+                      <a href="{% url 'blogmanagement:logout' %}"><h5>Logout</h5></a>
+                  {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container logo-wrap">
+          <div class="row pt-5">
+            <div class="col-12 text-center">
+              <a class="absolute-toggle d-block d-md-none" data-toggle="collapse" href="#navbarMenu" role="button" aria-expanded="false" aria-controls="navbarMenu"><span class="burger-lines"></span></a>
+              <h1 class="site-logo"><a href="{% url 'blogmanagement:index' %}">Roku's Blog</a></h1>
+            </div>
+          </div>
+        </div>
+
+        <nav class="navbar navbar-expand-md  navbar-light bg-light">
+          <div class="container">
+
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+              <ul class="navbar-nav mx-auto">
+                  <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'blogmanagement:index' %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'blogmanagement:posts_by_category' 'entrepreneurship' %}">Entrepreneurship</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'blogmanagement:posts_by_category' 'social' %}">Social</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" href="{% url 'blogmanagement:posts_by_category' 'travel' %}">Travel</a>
+                  </li>
+              </ul>
+
+            </div>
+          </div>
+        </nav>
+      </header>
+
+    </div>

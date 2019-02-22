@@ -1,0 +1,16 @@
+<h1>Editing category {{ category.name }}</h1>
+
+{% if error %}
+    <h3>ERROR: {{ error }}.</h3>
+{% endif %}
+
+<form action="{% url 'blogmanagement:edit_author' author.id %}" method="post">
+    {% csrf_token %}
+    <label for="category_name">Name</label>
+    <input type="text" name="author_id" hidden value="{{ author.id }}">
+    <input type="text" id="author_name" name="name" value="{{ author.name }}">
+    <label for="author_contact">Contact</label>
+    <input type="text" id="author_contact" name="contact" value="{{ author.contact }}">
+    <br><br>
+    <input type="submit">
+</form>
